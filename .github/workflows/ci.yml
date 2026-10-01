@@ -1,1 +1,11 @@
-Hello
+name: Git Bash Pipeline
+on:
+  push:
+    branches: [ main ]
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome message
+        run: echo "Hello from Git Bash!"
+
