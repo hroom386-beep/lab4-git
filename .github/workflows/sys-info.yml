@@ -1,0 +1,29 @@
+name: System Info Log
+
+on:
+  push:
+    branches:[ "main" ]
+  workflow_dispatch:
+
+jobs:
+  display-info:
+  runs-on: ubuntu-latest
+  steps:
+    - name: Print OS and Kernel Version
+    run: |
+      echo "=== OS and Kernel Information ==="
+      uname -a
+      echo "---------------------------------"
+      cat /etc/os-release
+
+      - name: Print User and Working Directory
+    run: |
+      echo "=== User and Directory Information ==="
+      echo "Current User: $(whoami)"
+      echo "Current Working Directory: $(pwd)"
+
+        - name: Print GitHub Context Variables
+    run: |
+      echo "=== GitHub Context ==="
+      echo "GitHub Actor: ${{ github.actor }}"
+      echo "GitHub Repository: ${{github.reposityory }}"
