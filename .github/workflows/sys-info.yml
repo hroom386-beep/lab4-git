@@ -1,29 +1,31 @@
-name: System Info Log
+name: System Information
 
 on:
   push:
-    branches:[ "main" ]
+    branches: [ "main", "master" ]
   workflow_dispatch:
 
 jobs:
-  display-info:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Print OS and Kernel Version
-    run: |
-      echo "=== OS and Kernel Information ==="
-      uname -a
-      echo "---------------------------------"
-      cat /etc/os-release
+  print-info:
+    runs-on: ubuntu-latest
 
-      - name: Print User and Working Directory
-    run: |
-      echo "=== User and Directory Information ==="
-      echo "Current User: $(whoami)"
-      echo "Current Working Directory: $(pwd)"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-        - name: Print GitHub Context Variables
-    run: |
-      echo "=== GitHub Context ==="
-      echo "GitHub Actor: ${{ github.actor }}"
-      echo "GitHub Repository: ${{github.reposityory }}"
+      - name: OS and Kernel Version
+        run: |
+          echo "=== Kernel Info ==="
+          uname -a
+          echo -e "\n=== OS Release Info ==="
+          cat /etc/os-release
+
+      - name: Current User and Working Directory
+        run: |
+          echo "Current user: $(whoami)"
+          echo "Working directory: $(pwd)"
+
+      - name: GitHub Context Variables
+        run: |
+          echo "Triggered by actor: ${{ github.actor }}"
+          echo "Repository: ${{ github.repository }}"
