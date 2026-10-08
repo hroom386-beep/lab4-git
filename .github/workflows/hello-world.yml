@@ -1,1 +1,16 @@
-print("Привет от Балтабаева Батырхана!")
+name: Print Message Workflow
+
+on: [push] # Triggers whenever you push code
+
+jobs:
+  display-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print single line message
+        run: echo "Hello, world from Batyrkhan."
+
+      - name: Print multi-line message
+        run: |
+          echo "Line 1: Starting the job..."
+          echo "Line 2: Processing data..."
+          echo "Line 3: Finished successfully!"
